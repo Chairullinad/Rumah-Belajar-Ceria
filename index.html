@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>RBC - Rumah Belajar Ceria | Bimbingan TK & SD</title>
+<meta name="description" content="Rumah Belajar Ceria (RBC) - Bimbingan belajar TK & SD: Calistung, Mata Pelajaran Sekolah, Private Bahasa Inggris. Belajar seru, prestasi ceria!" />
+
+<!-- Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  /* ============ RESET & BASE ============ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --pink: #FF6B9D;
+    --yellow: #FFD93D;
+    --blue: #6BCBFF;
+    --mint: #6BCB77;
+    --purple: #B983FF;
+    --dark: #2D3142;
+    --light: #FFF9F0;
+    --shadow: 0 10px 30px rgba(45, 49, 66, 0.08);
+    --shadow-hover: 0 15px 40px rgba(45, 49, 66, 0.15);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--dark);
+    background: var(--light);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4 { font-family: 'Fredoka', sans-serif; font-weight: 600; line-height: 1.2; }
+  a { text-decoration: none; color: inherit; }
+  img { max-width: 100%; display: block; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  /* ============ NAVBAR ============ */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255, 249, 240, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 16px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+  }
+  .nav-wrap { display: flex; justify-content: space-between; align-items: center; }
+  .logo { font-family: 'Fredoka', sans-serif; font-size: 1.6rem; font-weight: 700; color: var(--pink); }
+  .logo span { color: var(--blue); }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { font-weight: 500; transition: color .2s; }
+  .nav-links a:hover { color: var(--pink); }
+  .menu-toggle { display: none; background: none; border: none; font-size: 1.6rem; cursor: pointer; color: var(--dark); }
+
+  /* ============ HERO ============ */
+  .hero {
+    padding: 80px 0 100px;
+    background: linear-gradient(135deg, #FFE8F0 0%, #FFF4D6 50%, #E0F4FF 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before, .hero::after {
+    content: ''; position: absolute; border-radius: 50%;
+    filter: blur(60px); opacity: .5; z-index: 0;
+  }
+  .hero::before { width: 300px; height: 300px; background: var(--yellow); top: -100px; left: -100px; }
+  .hero::after { width: 250px; height: 250px; background: var(--pink); bottom: -80px; right: -80px; }
+  .hero-grid {
+    display: grid; grid-template-columns: 1.1fr 1fr; gap: 60px; align-items: center;
+    position: relative; z-index: 1;
+  }
+  .hero-badge {
+    display: inline-block; background: white; color: var(--pink);
+    padding: 8px 18px; border-radius: 999px; font-weight: 600; font-size: .85rem;
+    box-shadow: var(--shadow); margin-bottom: 20px;
+  }
+  .hero h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); margin-bottom: 20px; }
+  .hero h1 .highlight { color: var(--pink); position: relative; }
+  .hero h1 .highlight::after {
+    content: ''; position: absolute; bottom: 4px; left: 0; right: 0; height: 10px;
+    background: var(--yellow); z-index: -1; border-radius: 4px;
+  }
+  .hero p { font-size: 1.1rem; color: #555; margin-bottom: 32px; max-width: 520px; }
+  .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 28px; border-radius: 999px; font-weight: 600;
+    font-size: 1rem; cursor: pointer; border: none;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .btn-primary { background: var(--pink); color: white; box-shadow: 0 8px 20px rgba(255,107,157,.35); }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(255,107,157,.45); }
+  .btn-outline { background: white; color: var(--dark); box-shadow: var(--shadow); }
+  .btn-outline:hover { transform: translateY(-3px); }
+
+  /* Hero illustration (CSS art) */
+  .hero-art {
+    aspect-ratio: 1; max-width: 480px; margin: 0 auto;
+    background: white; border-radius: 40px;
+    box-shadow: var(--shadow);
+    display: grid; place-items: center;
+    position: relative;
+    font-size: 8rem;
+  }
+  .hero-art::before {
+    content: '📚'; position: absolute; top: 20px; left: 20px;
+    font-size: 3rem; transform: rotate(-15deg);
+  }
+  .hero-art::after {
+    content: '✏️'; position: absolute; bottom: 30px; right: 30px;
+    font-size: 3rem; transform: rotate(20deg);
+  }
+  .float-emoji { position: absolute; font-size: 2.5rem; animation: float 4s ease-in-out infinite; }
+  .float-emoji.e1 { top: 10%; right: -10%; animation-delay: 0s; }
+  .float-emoji.e2 { bottom: 15%; left: -8%; animation-delay: 1.5s; }
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0); }
+    50% { transform: translateY(-15px) rotate(10deg); }
+  }
+
+  /* ============ SECTION HEADER ============ */
+  section { padding: 90px 0; }
+  .section-head { text-align: center; margin-bottom: 60px; }
+  .section-tag {
+    display: inline-block; background: var(--yellow); color: var(--dark);
+    padding: 6px 16px; border-radius: 999px; font-weight: 600; font-size: .85rem;
+    margin-bottom: 14px;
+  }
+  .section-head h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 12px; }
+  .section-head p { color: #666; max-width: 600px; margin: 0 auto; }
+
+  /* ============ PROGRAMS ============ */
+  .programs-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+  }
+  .program-card {
+    background: white; border-radius: 24px; padding: 32px 24px;
+    box-shadow: var(--shadow); transition: transform .3s, box-shadow .3s;
+    border: 2px solid transparent;
+  }
+  .program-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); border-color: var(--yellow); }
+  .program-icon {
+    width: 70px; height: 70px; border-radius: 20px;
+    display: grid; place-items: center; font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  .program-card:nth-child(1) .program-icon { background: #FFE8F0; }
+  .program-card:nth-child(2) .program-icon { background: #E0F4FF; }
+  .program-card:nth-child(3) .program-icon { background: #E8F8E8; }
+  .program-card:nth-child(4) .program-icon { background: #F0E8FF; }
+  .program-card h3 { font-size: 1.3rem; margin-bottom: 10px; }
+  .program-card p { color: #666; font-size: .95rem; margin-bottom: 16px; }
+  .program-card ul { list-style: none; }
+  .program-card li {
+    font-size: .9rem; color: #555; padding: 4px 0;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .program-card li::before { content: '✓'; color: var(--mint); font-weight: 700; }
+
+  /* ============ WHY US ============ */
+  .why { background: white; }
+  .why-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+  }
+  .why-item { text-align: center; }
+  .why-emoji { font-size: 3rem; margin-bottom: 12px; }
+  .why-item h4 { font-size: 1.15rem; margin-bottom: 8px; }
+  .why-item p { color: #666; font-size: .92rem; }
+
+  /* ============ GALLERY ============ */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+  }
+  .gallery-item {
+    aspect-ratio: 1;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    background: #eee;
+    cursor: pointer;
+    transition: transform .3s;
+    box-shadow: var(--shadow);
+  }
+  .gallery-item:hover { transform: scale(1.04); }
+  .gallery-item img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform .4s;
+  }
+  .gallery-item:hover img { transform: scale(1.1); }
+  .gallery-item .caption {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(45,49,66,.7), transparent 60%);
+    color: white; display: flex; align-items: flex-end;
+    padding: 12px; font-size: .8rem; font-weight: 500;
+    opacity: 0; transition: opacity .3s;
+  }
+  .gallery-item:hover .caption { opacity: 1; }
+
+  /* ============ CTA ============ */
+  .cta-section {
+    background: linear-gradient(135deg, var(--pink), var(--purple));
+    color: white; text-align: center; border-radius: 32px;
+    padding: 60px 30px; margin: 0 24px;
+    position: relative; overflow: hidden;
+  }
+  .cta-section::before, .cta-section::after {
+    content: ''; position: absolute; border-radius: 50%;
+    background: rgba(255,255,255,.1);
+  }
+  .cta-section::before { width: 200px; height: 200px; top: -80px; left: -80px; }
+  .cta-section::after { width: 150px; height: 150px; bottom: -60px; right: -60px; }
+  .cta-section h2 { font-size: clamp(1.8rem, 4vw, 2.4rem); margin-bottom: 14px; position: relative; }
+  .cta-section p { margin-bottom: 28px; opacity: .95; position: relative; }
+  .cta-section .btn-primary {
+    background: white; color: var(--pink);
+    box-shadow: 0 10px 30px rgba(0,0,0,.2);
+  }
+  .cta-section .btn-primary:hover { background: var(--yellow); color: var(--dark); }
+
+  /* ============ FOOTER ============ */
+  footer {
+    background: var(--dark); color: white; padding: 50px 0 24px;
+    text-align: center;
+  }
+  footer .logo { color: white; margin-bottom: 10px; display: inline-block; }
+  footer p { opacity: .8; font-size: .9rem; margin-bottom: 8px; }
+  .socials { display: flex; justify-content: center; gap: 16px; margin: 20px 0; }
+  .socials a {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: rgba(255,255,255,.1); display: grid; place-items: center;
+    transition: background .2s; font-size: 1.1rem;
+  }
+  .socials a:hover { background: var(--pink); }
+  .copyright { border-top: 1px solid rgba(255,255,255,.1); padding-top: 20px; margin-top: 20px; font-size: .85rem; opacity: .7; }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; text-align: center; }
+    .hero p { margin: 0 auto 32px; }
+    .hero-cta { justify-content: center; }
+    .hero-art { max-width: 320px; }
+  }
+  @media (max-width: 768px) {
+    .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0;
+      background: white; flex-direction: column; padding: 20px; gap: 16px;
+      box-shadow: var(--shadow); }
+    .nav-links.open { display: flex; }
+    .menu-toggle { display: block; }
+    .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+    section { padding: 60px 0; }
+  }
+  @media (max-width: 480px) {
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero-cta { flex-direction: column; align-items: stretch; }
+    .btn { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAVBAR ============ -->
+<nav>
+  <div class="container nav-wrap">
+    <a href="#" class="logo">RBC<span>.</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#program">Program</a></li>
+      <li><a href="#kenapa">Kenapa RBC</a></li>
+      <li><a href="#galeri">Galeri</a></li>
+      <li><a href="#daftar">Daftar</a></li>
+    </ul>
+    <button class="menu-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="hero-badge">🌟 Pendaftaran Dibuka!</span>
+      <h1>Belajar Seru di <span class="highlight">Rumah Belajar Ceria</span></h1>
+      <p>Bimbingan belajar khusus <b>TK & SD</b> — mulai dari Calistung, mata pelajaran sekolah, sampai private Bahasa Inggris. Belajar jadi menyenangkan, prestasi jadi ceria! 🎈</p>
+      <div class="hero-cta">
+        <a href="#daftar" class="btn btn-primary">Daftar Sekarang →</a>
+        <a href="#program" class="btn btn-outline">Lihat Program</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      🧒📖
+      <span class="float-emoji e1">⭐</span>
+      <span class="float-emoji e2">🎨</span>
+    </div>
+  </div>
+</header>
+
+<!-- ============ PROGRAMS ============ -->
+<section id="program">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-tag">📚 Program Kami</span>
+      <h2>Pilih Program Favoritmu</h2>
+      <p>Kurikulum dirancang khusus untuk anak TK & SD dengan metode belajar yang fun dan interaktif.</p>
+    </div>
+    <div class="programs-grid">
+
+      <div class="program-card">
+        <div class="program-icon">🔤</div>
+        <h3>Calistung</h3>
+        <p>Fondasi belajar untuk anak TK & kelas awal SD.</p>
+        <ul>
+          <li>Membaca</li>
+          <li>Menulis</li>
+          <li>Berhitung</li>
+          <li>Metode bermain</li>
+        </ul>
+      </div>
+
+      <div class="program-card">
+        <div class="program-icon">📐</div>
+        <h3>Mapel Sekolah</h3>
+        <p>Pendamping belajar untuk siswa SD kelas 1–6.</p>
+        <ul>
+          <li>Matematika</li>
+          <li>Bahasa Indonesia</li>
+          <li>IPA & IPS</li>
+          <li>PR & ujian</li>
+        </ul>
+      </div>
+
+      <div class="program-card">
+        <div class="program-icon">🇬🇧</div>
+        <h3>Private English</h3>
+        <p>Kelas privat Bahasa Inggris 1-on-1 yang fleksibel.</p>
+        <ul>
+          <li>Speaking & Listening</li>
+          <li>Vocabulary & Grammar</li>
+          <li>Conversation fun</li>
+          <li>Jadwal fleksibel</li>
+        </ul>
+      </div>
+
+      <div class="program-card">
+        <div class="program-icon">🎨</div>
+        <h3>TK & SD</h3>
+        <p>Program reguler dengan suasana kelas yang ceria.</p>
+        <ul>
+          <li>Kelas kecil</li>
+          <li>Guru sabar & ramah</li>
+          <li>Learning by playing</li>
+          <li>Laporan perkembangan</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY US ============ -->
+<section class="why" id="kenapa">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-tag">💖 Kenapa RBC?</span>
+      <h2>Belajar di RBC itu Beda!</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="why-emoji">👩‍🏫</div>
+        <h4>Pengajar Berpengalaman</h4>
+        <p>Guru ramah, sabar, dan paham psikologi anak.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-emoji">🎮</div>
+        <h4>Metode Fun Learning</h4>
+        <p>Belajar sambil bermain, anak betah & semangat.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-emoji">👥</div>
+        <h4>Kelas Kecil</h4>
+        <p>Perhatian maksimal untuk setiap anak.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-emoji">📈</div>
+        <h4>Laporan Rutin</h4>
+        <p>Orang tua selalu tahu perkembangan anaknya.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section id="galeri">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-tag">📸 Galeri Kegiatan</span>
+      <h2>Suasana Belajar di RBC</h2>
+      <p>Intip keseruan anak-anak belajar di Rumah Belajar Ceria. Ceria, aktif, dan penuh kreativitas!</p>
+    </div>
+
+    <!--
+      📌 CARA GANTI FOTO:
+      Ganti src di bawah ini dengan path foto kamu.
+      Contoh: src="foto/kegiatan1.jpg"
+      Pastikan folder foto ada di repo GitHub kamu.
+    -->
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400" alt="Kegiatan 1" />
+        <div class="caption">Belajar Calistung</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?w=400" alt="Kegiatan 2" />
+        <div class="caption">Kelas Matematika</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=400" alt="Kegiatan 3" />
+        <div class="caption">Private English</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400" alt="Kegiatan 4" />
+        <div class="caption">Bermain Sambil Belajar</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=400" alt="Kegiatan 5" />
+        <div class="caption">Kelas Seni</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1544776193-352d25ca82cd?w=400" alt="Kegiatan 6" />
+        <div class="caption">Suasana Kelas</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section id="daftar" style="padding-top: 0;">
+  <div class="container">
+    <div class="cta-section">
+      <h2>Yuk, Daftar Sekarang! 🎉</h2>
+      <p>Konsultasi gratis & tanya-tanya program langsung via WhatsApp.</p>
+      <!--
+        📌 GANTI NOMOR WA DI BAWAH INI:
+        Ganti 6281234567890 dengan nomor WA RBC (format: 62xxx tanpa + atau 0 di depan)
+      -->
+      <a href="https://wa.me/6281234567890?text=Halo%20RBC%2C%20saya%20ingin%20mendaftar%20bimbingan%20belajar." target="_blank" class="btn btn-primary">
+        💬 Chat WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <a href="#" class="logo">RBC<span style="color: var(--yellow);">.</span></a>
+    <p>Rumah Belajar Ceria — Bimbingan TK & SD</p>
+    <p>📍 Alamat: Jl. Contoh No. 123, Kota Kamu</p>
+    <div class="socials">
+      <a href="#" aria-label="Instagram">📷</a>
+      <a href="#" aria-label="Facebook">📘</a>
+      <a href="https://wa.me/6281234567890" aria-label="WhatsApp">💬</a>
+    </div>
+    <div class="copyright">
+      © 2026 Rumah Belajar Ceria. Made with 💖 for little learners.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
